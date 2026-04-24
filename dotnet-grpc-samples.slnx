@@ -1,2 +1,8 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AppHost/AppHost.AppHost/AppHost.AppHost.csproj" Id="f0e251bc-4d49-4408-af0f-02164a16a644" />
+    <Project Path="src/AppHost/AppHost.ServiceDefaults/AppHost.ServiceDefaults.csproj" />
+    <Project Path="src/GrpcClient/GrpcClient.csproj" Id="e8e82947-eb33-4c0a-8e7b-c4d1be890d97" />
+    <Project Path="src/GrpcServer/GrpcServer.csproj" />
+  </Folder>
 </Solution>
