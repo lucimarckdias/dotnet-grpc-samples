@@ -2,6 +2,8 @@ using Grpc.Net.Client;
 
 using GrpcClient;
 
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -49,6 +51,22 @@ app.MapGet("/greet", (string? name, IConfiguration configuration, CancellationTo
         Name = name ?? "World"
     };
     var reply = client.SayHello(message, cancellationToken: cancellationToken);
+
+    return reply;
+});
+
+app.MapGet("/token", (string? user, IConfiguration configuration, CancellationToken cancellationToken) =>
+{
+    var address = configuration.GetValue<string>("services:grpc-server:http:0") ?? string.Empty;
+    using var channel = GrpcChannel.ForAddress(address);
+
+    var client = new Admin.AdminClient(channel);
+    var request = new BuscarTokenRequest
+    {
+        Username = user ?? "user",
+        Password = "password"
+    };
+    var reply = client.BuscarToken(request, cancellationToken: cancellationToken);
 
     return reply;
 });

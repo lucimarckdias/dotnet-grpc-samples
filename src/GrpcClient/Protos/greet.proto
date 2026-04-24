@@ -19,3 +19,16 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
 }
+
+service Admin {
+    rpc BuscarToken(BuscarTokenRequest) returns (BuscarTokenReply);
+}
+
+message BuscarTokenRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message BuscarTokenReply {
+    string token = 1;
+}
